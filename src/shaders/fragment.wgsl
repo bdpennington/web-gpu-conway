@@ -1,4 +1,9 @@
+struct FragInput {
+  @location(0) cell: vec2f,
+};
+
 @fragment
-fn fragmentMain() -> @location(0) vec4f {
-  return vec4f(1, 0, 0, 1); // (Red, Green, Blue, Alpha)
+fn fragmentMain(input: FragInput) -> @location(0) vec4f {
+  let c = input.cell / grid;
+  return vec4f(c, 1-c.x, 1);
 }
