@@ -12,11 +12,18 @@
         align-items: center;
         height: 100vh;
       }
+      #fps {
+        flex-shrink: 1;
+        white-space: pre;
+        font-family: monospace;
+        margin-left: 24px;
+      }
     </style>
   </head>
   <body>
     <main>
       <canvas width="512" height="512"></canvas>
+      <aside id="fps"></aside>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

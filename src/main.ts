@@ -1,5 +1,5 @@
 import { validateGPUAdapterOrError, validateWebGPUOrError } from './errors';
-
+import fps from './fps';
 // Importing assets as strings in Vite
 // https://vitejs.dev/guide/assets.html#importing-asset-as-string
 import VertexShader from './shaders/vertex.wgsl?raw';
@@ -33,8 +33,7 @@ const vertices = new Float32Array([
   -0.8, 0.8,
 ]);
 
-const GRID_SIZE = 32
-const UPDATE_INTERVAL = 80;
+const GRID_SIZE = 32;
 const WORKGROUP_SIZE = 8;
 let step = 0; // Track how many simulation steps have been run
 
@@ -189,6 +188,7 @@ const simulationPipeline = device.createComputePipeline({
 });
 
 function updateGrid() {
+  fps.render();
   const encoder = device.createCommandEncoder();
 
   const computeEncoder = encoder.beginComputePass();
@@ -224,5 +224,13 @@ function updateGrid() {
   device.queue.submit([encoder.finish()]);
 }
 
-// Schedule updateGrid() to run repeatedly
-setInterval(updateGrid, UPDATE_INTERVAL);
+let animationId: number;
+
+const renderLoop = () => {
+  fps.render();
+  updateGrid();
+
+  animationId = requestAnimationFrame(renderLoop);
+};
+
+renderLoop();
