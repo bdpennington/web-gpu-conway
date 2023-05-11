@@ -188,7 +188,6 @@ const simulationPipeline = device.createComputePipeline({
 });
 
 function updateGrid() {
-  fps.render();
   const encoder = device.createCommandEncoder();
 
   const computeEncoder = encoder.beginComputePass();
