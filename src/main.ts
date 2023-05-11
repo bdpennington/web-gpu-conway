@@ -24,11 +24,11 @@ context.configure({
 
 const vertices = new Float32Array([
   //   X,    Y,
-  -0.8, -0.8, // Triangle 1 (Blue)
+  -0.8, -0.8, // Triangle 1
   0.8, -0.8,
   0.8, 0.8,
 
-  -0.8, -0.8, // Triangle 2 (Red)
+  -0.8, -0.8, // Triangle 2
   0.8, 0.8,
   -0.8, 0.8,
 ]);
@@ -124,7 +124,7 @@ const bindGroupLayout = device.createBindGroupLayout({
 const bindGroups = [
   device.createBindGroup({
     label: "Cell renderer bind group A",
-    layout: bindGroupLayout, // Updated Line
+    layout: bindGroupLayout,
     entries: [{
       binding: 0,
       resource: { buffer: uniformBuffer }
@@ -132,13 +132,13 @@ const bindGroups = [
       binding: 1,
       resource: { buffer: cellStateStorage[0] }
     }, {
-      binding: 2, // New Entry
+      binding: 2,
       resource: { buffer: cellStateStorage[1] }
     }],
   }),
   device.createBindGroup({
     label: "Cell renderer bind group B",
-    layout: bindGroupLayout, // Updated Line
+    layout: bindGroupLayout,
 
     entries: [{
       binding: 0,
@@ -147,7 +147,7 @@ const bindGroups = [
       binding: 1,
       resource: { buffer: cellStateStorage[1] }
     }, {
-      binding: 2, // New Entry
+      binding: 2,
       resource: { buffer: cellStateStorage[0] }
     }],
   }),
@@ -215,7 +215,7 @@ function updateGrid() {
 
   // Draw the grid.
   pass.setPipeline(cellPipeline);
-  pass.setBindGroup(0, bindGroups[step % 2]); // Updated!
+  pass.setBindGroup(0, bindGroups[step % 2]);
   pass.setVertexBuffer(0, vertexBuffer);
   pass.draw(vertices.length / 2, GRID_SIZE * GRID_SIZE);
 
