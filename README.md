@@ -24,6 +24,6 @@ It adds the `GPUShaderStage.FRAGMENT` shader to the visibility property.
 
 ## Compatibility
 
-- For Chrome, use Windows, macOS versions >= 103 (mobile not supported yet)
+- For Chrome, use Windows, macOS versions >= 113 (mobile not supported yet)
 - For Edge Canary, please open edge://flags/#enable-unsafe-webgpu, and enable the flag
 - For FireFox Nightly, please open about:config, and change dom.webgpu.enabled to true
